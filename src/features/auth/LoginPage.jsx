@@ -1,12 +1,40 @@
 import React from 'react'
 import { Button, Input } from '../../components/ui'
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import authService from '../../appwrite/authService';
+import { login } from '../../store/authSlice';
 
 
 function LoginPage() {
-    const handleSubmit = (e) => {
+    // State to manage form inputs and error messages
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-    }
+        setError('');
+
+        try {
+            const session = await authService.login({ email, password });
+            const user = await authService.getCurrentUser();
+
+            if (user) {
+                dispatch(login(user));
+                navigate('/');
+            }
+        } catch (err) {
+            setError(err.message || 'Login failed');
+        }
+    };
+
     return (
         <div
             className='flex items-center justify-center text-black w-full'
@@ -27,7 +55,7 @@ function LoginPage() {
                         Sign Up
                     </Link>
                 </p>
-                {/* {error && <p className="text-red-600 mt-8 text-center">{error}</p>} */}
+                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
                 <form onSubmit={(e) => { console.log("Form submit triggered"); handleSubmit(e); }}>
                     <div className='space-y-5'>
@@ -35,12 +63,15 @@ function LoginPage() {
                             label="Email: "
                             placeholder="Enter your email"
                             type="email"
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                         <Input
                             label="Password: "
                             type="password"
                             placeholder="Enter your password"
+                            onChange={(e) => setPassword(e.target.value)}
+
                             required
                         />
                         <Button

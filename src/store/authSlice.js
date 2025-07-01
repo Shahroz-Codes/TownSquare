@@ -4,7 +4,7 @@ import authService from "../appwrite/authService";
 const initialState = {
     isAuthenticated: false,
     userData: null,
-    loading: false,
+    loading: true,
 };
 
 const authSlice = createSlice({
