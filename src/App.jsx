@@ -48,7 +48,15 @@ function App() {
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route
+
+
+        {/* All routes wrapped inside MainLayout */}
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="events" element={<Events />} />
+          <Route path="feedback" element={<Feedback />} />
+          <Route path="volunteer" element={<Volunteer />} />
+                  <Route
           path="/admin/add-event"
           element={
             <ProtectedRoute
@@ -57,13 +65,6 @@ function App() {
             />
           }
         />
-
-        {/* All routes wrapped inside MainLayout */}
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route path="events" element={<Events />} />
-          <Route path="feedback" element={<Feedback />} />
-          <Route path="volunteer" element={<Volunteer />} />
           <Route path="*" element={<NotFoundPage />} /> {/* optional */}
         </Route>
       </Routes>

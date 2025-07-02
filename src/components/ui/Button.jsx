@@ -8,7 +8,7 @@ function Button({
 }) {
     return (
         <button
-            className="relative inline-flex items-center justify-center px-6 py-2 overflow-hidden text-white transition duration-300 ease-out bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-xl shadow-xl group hover:from-red-500 hover:to-purple-600 hover:shadow-2xl hover:scale-105"
+            className={"relative inline-flex items-center justify-center px-6 py-2 overflow-hidden text-white transition duration-300 ease-out bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-xl shadow-xl group hover:from-red-500 hover:to-purple-600 hover:shadow-2xl hover:scale-105" + className}
             type={type}
             onClick={onClick}
         >

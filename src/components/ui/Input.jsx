@@ -4,7 +4,7 @@ const Input = function Input({
   label,
   type = "text",
   className = "",
-  placeholder = "",  
+  placeholder = "",
   ...props
 
 }, ref) {
@@ -33,7 +33,7 @@ const Input = function Input({
                 bg-white px-4 py-2.5 text-sm text-gray-900 placeholder-transparent 
                 shadow-inner transition-all duration-300 
                 focus:border-purple-500 focus:outline-none focus:ring-2 
-                focus:ring-purple-400 focus:ring-offset-2 ${className}`}
+                focus:ring-purple-400 focus:ring-offset-2 text-wrap ${className}`}
         {...props}
       />
     </div>

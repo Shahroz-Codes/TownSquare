@@ -1,5 +1,6 @@
 import conf from '../conf/conf.js';
 import { Client, ID, Databases, Storage, Query, Permission, Role } from "appwrite";
+import { ROLES } from '../utils/roles.js'; // Ensure you have this constant defined
 
 export class Service {
     client = new Client();
@@ -15,6 +16,7 @@ export class Service {
         this.bucket = new Storage(this.client);
     }
 
+    //Events Service
     async getEvents() {
         try {
             const response = await this.databases.listDocuments(
@@ -30,8 +32,18 @@ export class Service {
     }
 
 
-    async createEvent({ title, description, date, userId }) {
+    async createEvent({ title, description, location, date, status, imageFile }) {
         try {
+            // Upload image first
+            const uploadedFile = await this.bucket.createFile(
+                conf.bucketid,
+                ID.unique(),
+                imageFile
+            );
+
+            const imageId = uploadedFile?.$id;
+
+            // Create event with uploaded image ID
             return await this.databases.createDocument(
                 conf.databaseid,
                 conf.eventsCollectionId,
@@ -39,13 +51,14 @@ export class Service {
                 {
                     title,
                     description,
+                    location,
                     date,
-                    status: "active",
-                    userId: userId || null,
+                    status,
+                    image: imageId,
                 },
                 [
                     Permission.read(Role.any()),
-                    Permission.write(Role.user(ADMIN_ID)), // Only admin can modify
+                    Permission.write(Role.user(ROLES.ADMIN)),
                 ]
             );
         } catch (error) {
@@ -53,6 +66,68 @@ export class Service {
             throw error;
         }
     }
+    getImageUrl(fileId) {
+        return this.bucket.getFileView(conf.bucketid, fileId).toString();
+    }
+    //Volunteer Service
+
+    async createVolunteerNeed({ title, description, location, contact, createdat, createdby, status }) {
+        try {
+            return await this.databases.createDocument(
+                conf.databaseid,
+                conf.volunteerCollectionId,
+                ID.unique(),
+                {
+                    title,
+                    description,
+                    location,
+                    contact,
+                    createdat,
+                    createdby,
+                    status,
+                },
+                [
+                    Permission.read(Role.any()), // anyone can read
+                    Permission.write(Role.user(createdby)) // only creator can edit
+                ]
+            );
+        } catch (error) {
+            console.error("Appwrite :: createVolunteerNeed ::", error);
+            throw error;
+        }
+    }
+
+    async getVolunteerNeeds() {
+        try {
+            const response = await this.databases.listDocuments(
+                conf.databaseid,
+                conf.volunteerCollectionId,
+            );
+            return response.documents;
+        } catch (error) {
+            console.error("Appwrite :: getVolunteerNeeds ::", error);
+            return [];
+        }
+    }
+
+    async deleteVolunteerNeed(documentId, createdby) {
+        try {
+            await this.databases.deleteDocument(
+                conf.databaseid,
+                conf.volunteerCollectionId,
+                documentId,
+                [
+                    Permission.read(Role.any()), // anyone can read
+                    Permission.write(Role.user(createdby)) // only creator can edit
+                ]
+            );
+            return true;
+        } catch (error) {
+            console.error("Appwrite :: deleteVolunteerNeed ::", error);
+            return false;
+        }
+    }
+
 
 
 
