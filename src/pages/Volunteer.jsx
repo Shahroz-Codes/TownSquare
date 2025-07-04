@@ -38,7 +38,7 @@ function VolunteerPage() {
 
 
   return (
-    <div className="min-h-screen px-4 py-10 bg-gradient-to-br from-gray-100 to-gray-200 text-black">
+    <div className="min-h-screen px-4 py-10 bg-gray-800 text-black">
       {/* Trigger Button */}
       <div className="text-center mb-10">
         <Button
@@ -70,16 +70,16 @@ function VolunteerPage() {
 
       {/* Volunteer Posts */}
       <div className="max-w-6xl mx-auto mt-6">
-        <h2 className="text-3xl pl-10 font-bold mb-4 text-purple-800">Volunteer Needs</h2>
+        <h2 className="text-3xl pl-10 font-bold mb-4 text-purple-500">Volunteer Needs</h2>
 
         {loading ? (
           <p className="text-center text-gray-500">Loading...</p>
         ) : volunteerNeeds.length === 0 ? (
-          <p className="text-center text-gray-600">No active volunteer needs yet.</p>
+          <p className="text-center text-purple-500">No active volunteer needs yet.</p>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {volunteerNeeds.map((need) => (
-              <div key={need.$id} className="bg-white shadow-md rounded-lg p-5">
+              <div key={need.$id} className="bg-white shadow-md rounded-lg p-5 relative">
                 <h3 className="text-lg font-semibold text-purple-700">{need.title}</h3>
                 <p className="text-sm mt-2">{need.description}</p>
                 <p className="text-sm text-gray-600 mt-1">📍 {need.location}</p>
@@ -88,12 +88,14 @@ function VolunteerPage() {
                   Created: {new Date(need.createdat).toLocaleString()}
                 </p>
                 {userData?.$id === need.createdby && (
+                  <div className="absolute bottom-2 right-2">
                   <Button
                     onClick={() => handleDelete(need.$id)}
-                    className=" mt-2"
+                    className=" mt-2 "
                   >
                     Delete
                   </Button>
+                  </div>
                 )}
 
               </div>

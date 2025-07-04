@@ -19,9 +19,9 @@ function EventsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen px-4 py-10 bg-gradient-to-br from-gray-100 to-gray-200 text-black">
+    <div className="min-h-screen px-4 py-10 bg-gray-800  text-black">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-extrabold mb-8 text-purple-600 text-center">
+        <h2 className="text-3xl font-extrabold mb-8 text-purple-500 text-center">
           Upcoming Events
         </h2>
 

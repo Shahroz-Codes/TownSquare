@@ -5,6 +5,7 @@ const conf = {
     eventsCollectionId: String(import.meta.env.VITE_APPWRITE_EVENTS_COLLECTION_ID),
     volunteerCollectionId: String(import.meta.env.VITE_APPWRITE_VOLUNTEER_COLLECTION_ID),
     bucketid: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
+    feedbackCollectionId: String(import.meta.env.VITE_APPWRITE_FEEDBACK_COLLECTION_ID),
 }
 
 export default conf;

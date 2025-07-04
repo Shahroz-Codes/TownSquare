@@ -7,7 +7,7 @@ function MainLayout() {
   return (
     <main>
         <Navbar />
-        <div className='flex-1'> <Outlet /></div>
+        <div className='flex-1 bg-gray-900 text-white'> <Outlet /></div>
        
         <Footer />
     </main>

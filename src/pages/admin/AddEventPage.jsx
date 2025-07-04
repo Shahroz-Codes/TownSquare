@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Input, Button } from '../components/ui';
-import service from '../appwrite/config';
+import { Input, Button } from '../../components/ui';
+import service from '../../appwrite/config';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -51,12 +51,12 @@ function AddEventPage() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen py-10 bg-black text-black">
+    <div className="flex justify-center items-center min-h-screen text-black py-10 ">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-2xl  space-y-6 bg-gray-100 p-8 rounded-xl shadow"
+        className="w-full max-w-2xl  space-y-6 bg-gray-100 p-8 rounded-xl ring-2 ring-purple-600 shadow"
       >
-        <h2 className="text-2xl font-bold text-center">Create New Event</h2>
+        <h2 className="text-2xl font-bold text-center text-purple-500">Create New Event</h2>
 
         <Input
           label="Title"

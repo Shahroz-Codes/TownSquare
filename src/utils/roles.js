@@ -3,9 +3,7 @@ const ROLES = {
   MODERATOR: 'some-other-id',
 };
 
-export function isAdmin(user) {
-    console.log(user);
-    
+export function isAdmin(user) {    
   return user?.$id === ROLES.ADMIN;
 }
 

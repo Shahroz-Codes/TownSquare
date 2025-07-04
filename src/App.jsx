@@ -12,9 +12,16 @@ import Feedback from './pages/Feedback'
 import Volunteer from './pages/Volunteer'
 import Events from './pages/Events'
 import NotFoundPage from './pages/NotFoundPage'
-import AddEventPage from './pages/AddEventPage';
+import AddEventPage from './pages/admin/AddEventPage';
 import LoginPage from './features/auth/LoginPage';
 import SignupPage from './features/auth/SignupPage';
+import DashboardLayout from './components/layout/DashboardLayout';
+
+// Admin Pages
+import FeedbacksView from './pages/admin/FeedbacksView';
+import Dashboard from './pages/admin/Dashboard';
+import Analytics from './pages/admin/Analytics';
+
 
 // Routes
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -46,25 +53,34 @@ function App() {
       <Routes>
         {/* Standalone auth routes (not inside MainLayout) */}
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
+
 
 
         {/* All routes wrapped inside MainLayout */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
+
           <Route path="events" element={<Events />} />
           <Route path="feedback" element={<Feedback />} />
           <Route path="volunteer" element={<Volunteer />} />
-                  <Route
-          path="/admin/add-event"
-          element={
-            <ProtectedRoute
-              isAllowed={isAuthenticated && isAdmin(userData)}
-              element={<AddEventPage />}
-            />
-          }
-        />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route
+            path="/admi"
+            element={
+              <ProtectedRoute
+                isAllowed={isAuthenticated && isAdmin(userData)}
+                element={<DashboardLayout />}
+              />
+            }
+          />
+          <Route path="/admin" element={<DashboardLayout />}>
+            <Route index element={<Dashboard />} />
+            {/* Admin routes */}
+            <Route path="feedbacks" element={<FeedbacksView />} />
+            <Route path="add-event" element={<AddEventPage />} />
+            <Route path="analytics" element={<Analytics />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} /> {/* optional */}
         </Route>
       </Routes>

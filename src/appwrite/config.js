@@ -128,7 +128,66 @@ export class Service {
         }
     }
 
+    //Feedback Service
+    async createFeedback({ email, message }) {
+        try {
+            return await this.databases.createDocument(
+                conf.databaseid,
+                conf.feedbackCollectionId,
+                ID.unique(),
+                {
+                    email,
+                    message,
+                    createdat: new Date().toISOString(),
+                    status: "active"
+                },
+                [
+                    Permission.read(Role.any()),
+                    Permission.write(Role.any())
+                ]
+            );
+        } catch (error) {
+            console.error("Appwrite :: createFeedback ::", error);
+            throw error;
+        }
+    }
+    async getFeedbacks() {
+        try {
+            const response = await this.databases.listDocuments(
+                conf.databaseid,
+                conf.feedbackCollectionId,
+                [Query.equal("status", "active")]
+            );
+            return response.documents;
+        } catch (error) {
+            console.error("Appwrite :: getFeedbacks ::", error);
+            return [];
+        }
+    }
 
+    // Analytics Service
+    async getAnalyticsCounts() {
+        try {
+            const [feedbacksRes, eventsRes, volunteerRes] = await Promise.all([
+                this.databases.listDocuments(conf.databaseid, conf.feedbackCollectionId),
+                this.databases.listDocuments(conf.databaseid, conf.eventsCollectionId),
+                this.databases.listDocuments(conf.databaseid, conf.volunteerCollectionId),
+            ]);
+
+            return {
+                feedbacks: feedbacksRes.total,
+                events: eventsRes.total,
+                volunteerPosts: volunteerRes.total,
+            };
+        } catch (error) {
+            console.error("Appwrite :: getAnalyticsCounts ::", error);
+            return {
+                feedbacks: 0,
+                events: 0,
+                volunteerPosts: 0,
+            };
+        }
+    }
 
 
 }
