@@ -35,7 +35,7 @@ function VolunteerPage() {
       setVolunteerNeeds((prev) => prev.filter((n) => n.$id !== id));
     }
   };
-
+  
 
   return (
     <div className="min-h-screen px-4 py-10 bg-gray-800 text-black">

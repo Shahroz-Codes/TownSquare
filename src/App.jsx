@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import MainLayout from './components/layout/MainLayout'
 import { checkAuthStatus } from './store/authSlice';
+import { Loader } from './components/ui';
 
 //Pages
 import Home from './pages/Home'
@@ -45,7 +46,7 @@ function App() {
   const { loading } = useSelector((state) => state.auth);
 
   if (loading) {
-    return <div>Loading...</div>; // or a spinner
+    return <Loader />;
   }
 
   return (
