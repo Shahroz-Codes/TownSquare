@@ -37,16 +37,16 @@ const Analytics = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 text-white">
         <div className="bg-gray-700 shadow-lg rounded-xl p-6">
           <p className="">Total Feedbacks</p>
-          <p className="text-4xl font-bold text-blue-600">{counts.feedbacks}</p>
+          <p className="text-4xl font-bold text-blue-600">{counts.feedbacks}+</p>
         </div>
         <div className="bg-gray-700 shadow-lg rounded-xl p-6">
           <p className="">Total Events</p>
-          <p className="text-4xl font-bold text-green-600">{counts.events}</p>
+          <p className="text-4xl font-bold text-green-600">{counts.events}+</p>
         </div>
         <div className=" bg-gray-700 shadow-lg rounded-xl p-6">
           <p className="">Volunteer Posts</p>
           <p className="text-4xl font-bold text-yellow-600">
-            {counts.volunteerPosts}
+            {counts.volunteerPosts}+
           </p>
         </div>
       </div>

@@ -66,7 +66,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route
-            path="/admi"
+            path="/admin"
             element={
               <ProtectedRoute
                 isAllowed={isAuthenticated && isAdmin(userData)}

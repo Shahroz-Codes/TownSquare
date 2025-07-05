@@ -79,12 +79,12 @@ function VolunteerPage() {
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {volunteerNeeds.map((need) => (
-              <div key={need.$id} className="bg-white shadow-md rounded-lg p-5 relative">
-                <h3 className="text-lg font-semibold text-purple-700">{need.title}</h3>
-                <p className="text-sm mt-2">{need.description}</p>
-                <p className="text-sm text-gray-600 mt-1">📍 {need.location}</p>
-                <p className="text-sm text-gray-600 mt-1">📧 {need.contact}</p>
-                <p className="text-xs text-gray-400 mt-2">
+              <div key={need.$id} className="bg-gray-800 rounded-lg p-6 shadow hover:shadow-xl transition border cursor-default border-gray-700 hover:border-purple-500 relative">
+                <h3 className="text-lg font-semibold text-purple-400">{need.title}</h3>
+                <p className="text-sm text-gray-200 mt-2">{need.description}</p>
+                <p className="text-sm text-gray-400 mt-1">📍 {need.location}</p>
+                <p className="text-sm text-gray-400 mt-1">📧 {need.contact}</p>
+                <p className="text-xs text-gray-500 mt-2">
                   Created: {new Date(need.createdat).toLocaleString()}
                 </p>
                 {userData?.$id === need.createdby && (

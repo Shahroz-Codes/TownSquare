@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/authSlice';
@@ -18,13 +17,13 @@ function Navbar() {
     };
 
     return (
-        <nav className="bg-gray-900 text-white shadow-md sticky top-0 z-50">
-            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        <nav className="bg-gray-900  text-white shadow-md sticky top-0 z-50">
+            <div className="container mx-auto px-4 py-3 flex justify-between  flex-wrap space-y-2 items-center">
                 <Link to="/" className="text-2xl font-bold text-purple-400 hover:text-purple-300 transition">
                     TownSquare
                 </Link>
 
-                <div className="flex items-center space-x-6">
+                <div className="flex items-center flex-wrap justify-center gap-4">
                     {isAuthenticated ? (
                         <>
                             <Link to="/volunteer" className="hover:text-purple-300 transition">Volunteer</Link>
@@ -42,15 +41,14 @@ function Navbar() {
 
                             <Button
                                 onClick={handleLogout}
-                                className="text-red-400 hover:text-red-600 transition"
                             >
                                 Logout
                             </Button>
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="hover:text-purple-300 transition">Login</Link>
-                            <Link to="/signup" className="hover:text-purple-300 transition">Sign Up</Link>
+                            <Link to="/login" className="hover:text-purple-300 transition"><Button>Login</Button></Link>
+                            <Link to="/signup" className="hover:text-purple-300 transition"><Button>Sign Up</Button></Link>
                         </>
                     )}
                 </div>

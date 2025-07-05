@@ -24,11 +24,11 @@ const FeedbacksPage = () => {
         {feedbacks.map((fb) => (
           <div
             key={fb.$id}
-            className="p-4 bg-gray-200 text-black shadow rounded-xl"
+            className="p-4 bg-gray-600 text-zinc-200 shadow rounded-xl"
           >
             <p><strong>Email:</strong> {fb.email}</p>
             <p><strong>Message:</strong> {fb.message}</p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-100">
               Submitted: {new Date(fb.createdat).toLocaleString()}
             </p>
           </div>

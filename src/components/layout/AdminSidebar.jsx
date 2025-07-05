@@ -3,7 +3,7 @@ import { Home, MessageCircle, PlusCircle, BarChart2 } from "lucide-react";
 
 const AdminSidebar = () => {
     return (
-        <aside className="h-screen w-64 bg-gray-900 text-white flex flex-col">
+        <aside className="h-screen w-64 bg-gray-900 text-white flex flex-col p-2">
             <NavLink
                 to="/admin"
                 className={({ isActive }) =>

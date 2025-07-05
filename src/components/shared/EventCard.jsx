@@ -17,11 +17,16 @@ function EventCard({ event }) {
         />
         <div className="p-4">
           <h3 className="text-xl font-bold mb-2">{event.title}</h3>
+          {/* <p className="text-gray-700 mb-4">
+            {event.description.length > 100
+              ? `${event.description.substring(0, 100)}...`
+              : event.description}
+          </p> */}
           <Button
             onClick={() => setIsOpen(true)}
             className="text-sm text-purple-600 hover:underline font-semibold"
           >
-            Read More
+            More Info
           </Button>
         </div>
       </div>

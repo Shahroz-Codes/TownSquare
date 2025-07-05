@@ -1,16 +1,17 @@
 import React from 'react';
 import service from "../../appwrite/config";
 
+
 function EventDetails({ event, onClose }) {
     const imageUrl = service.getImageUrl(event.image);
 
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-transparent bg-opacity-60 backdrop-blur-sm px-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-transparent bg-opacity-60 backdrop-blur-sm">
             <div className="bg-white rounded-xl max-w-lg w-full p-6 relative text-black">
                 <button
                     onClick={onClose}
-                    className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl font-bold"
+                    className="absolute top-3 right-3 text-gray-200 text-center pb-1 hover:text-gray-200 hover:scale-110 transition bg-purple-600 rounded-lg pl-2 pr-2 text-3xl font-bold"
                 >
                     &times;
                 </button>
