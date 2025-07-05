@@ -19,8 +19,9 @@ function Navbar() {
     return (
         <nav className="bg-gray-900  text-white shadow-md sticky top-0 z-50">
             <div className="container mx-auto px-4 py-3 flex justify-between  flex-wrap space-y-2 items-center">
-                <Link to="/" className="text-2xl font-bold text-purple-400 hover:text-purple-300 transition">
-                    TownSquare
+                <Link to="/" className="text-2xl font-bold text-purple-400 hover:text-purple-300 transition flex gap-2">
+                    <img src="/src/assets/logo.png" alt="Logo" className='h-8 w-8'/>
+                    <h1>TownSquare</h1>
                 </Link>
 
                 <div className="flex items-center flex-wrap justify-center gap-4">

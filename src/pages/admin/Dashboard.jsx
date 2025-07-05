@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+      const { userData } = useSelector((state) => state.auth);
+
   return (
     <div className="space-y-6">
       {/* Heading */}
-      <h1 className="text-4xl md:text-5xl font-bold text-purple-400">
-        Welcome to TownSquare Admin Dashboard
+      <h1 className="text-3xl md:text-5xl font-bold text-purple-400">
+        Welcome {userData.name}
       </h1>
       <p className="text-lg text-gray-300">
         Your central hub to manage community events, volunteer needs, and feedback.
